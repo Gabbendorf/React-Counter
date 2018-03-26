@@ -7,21 +7,25 @@ test('renders without crashing', () => {
   mount(<Counter />);
 })
 
-test('initial count value is zero', () => {
-  const counter = ReactDOM.render(
-    <Counter />,
-    document.createElement('div')
-  );
+test('renders a button component', () => {
+  const counter = shallow(<Counter />);
+  const button = counter.find("button");
 
-  expect(counter.state.count).toBe(0);
+  expect(button.text()).toBe("+1");
+});
+
+test('initial count value is zero', () => {
+  const counter = shallow(<Counter />);
+  const h1 = counter.find("h1");
+
+  expect(h1.text()).toBe("0");
 });
 
 test('sets updated count', () => {
-  const counter = ReactDOM.render(
-    <Counter />,
-    document.createElement('div')
-  );
-  counter.onClick();
+  const counter = shallow(<Counter />);
+  counter.find("button").simulate("click");
 
-  expect(counter.state.count).toBe(1);
+  const h1 = counter.find("h1");
+
+  expect(h1.text()).toBe("1");
 });
