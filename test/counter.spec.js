@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
-import { Counter } from '../src/app'
+import { Counter } from '../src/counter'
 
 test('renders without crashing', () => {
   mount(<Counter />);
